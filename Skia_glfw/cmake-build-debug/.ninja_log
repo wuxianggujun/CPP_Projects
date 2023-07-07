@@ -1,0 +1,14 @@
+# ninja log v5
+1	92	7104394648555216	build.ninja	36325333a7ad3f22
+1	573	7104394654466826	src/CMakeFiles/Skia_glfw.dir/main.cpp.obj	876857fe125d68b9
+573	1814	7104394657181109	src/Skia_glfw.exe	bafe6b8e22efa2d4
+1	433	7104394910539539	src/CMakeFiles/Skia_glfw.dir/main.cpp.obj	876857fe125d68b9
+434	1263	7104394911454711	src/Skia_glfw.exe	bafe6b8e22efa2d4
+1	900	7104442328250034	src/CMakeFiles/Skia_glfw.dir/main.cpp.obj	876857fe125d68b9
+901	1922	7104442330099344	src/Skia_glfw.exe	bafe6b8e22efa2d4
+1	707	7104442798987876	src/CMakeFiles/Skia_glfw.dir/main.cpp.obj	876857fe125d68b9
+707	1668	7104442800184750	src/Skia_glfw.exe	bafe6b8e22efa2d4
+1	718	7104443299189221	src/CMakeFiles/Skia_glfw.dir/main.cpp.obj	876857fe125d68b9
+718	1683	7104443300467715	src/Skia_glfw.exe	bafe6b8e22efa2d4
+1	666	7104444420647628	src/CMakeFiles/Skia_glfw.dir/main.cpp.obj	876857fe125d68b9
+666	1606	7104444421827881	src/Skia_glfw.exe	bafe6b8e22efa2d4
