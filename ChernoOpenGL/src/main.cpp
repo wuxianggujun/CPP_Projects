@@ -16,7 +16,7 @@ static void GLClearError() {
 
 static bool GLLogCall(const char *function, const char *file, int line) {
     while (GLenum error = glGetError()) {
-        std::cout << "GL_ERROR: (" << error <<") "<< function << " " <<file<<":"<< line << std::endl;
+        std::cout << "GL_ERROR: (" << error << ") " << function << " " << file << ":" << line << std::endl;
         return false;
     }
     return true;
@@ -107,6 +107,7 @@ int main() {
 
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(640, 480, "Hello World", nullptr, nullptr);
+
     if (!window) {
         glfwTerminate();
         return -1;
@@ -114,6 +115,8 @@ int main() {
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
+    glfwSwapInterval(1);
+
 
     if (glewInit() != GLEW_OK) {
         std::cout << "Unable to initialize GLEW\n";
@@ -156,13 +159,28 @@ int main() {
     unsigned int shader = CreateShader(sources.VertexShaderSource, sources.FragmentShaderSource);
     glUseProgram(shader);
 
+    int location = glGetUniformLocation(shader, "u_color");
+    ASSERT(location != -1);
+    glUniform4f(location, 0.8f, 0.3f, 0.8f, 1.0f);
+
+
+    float r = 0.0f;
+    float increment = 0.05f;
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window)) {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-        GLCall(glDrawElements(GL_TRIANGLES, 6, GL_INT, nullptr));
-//        glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT, nullptr);
+        glUniform4f(location, r, 0.3f, 0.8f, 1.0f);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+
+        if (r > 1.0f) {
+            increment = -0.05f;
+        } else if (r < 0.0f) {
+            increment = 0.05f;
+        }
+
+        r += increment;
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
