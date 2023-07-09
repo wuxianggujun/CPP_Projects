@@ -27,6 +27,7 @@ public:
     void Unbind() const;
 
     //Set uniforms
+    void SetUniform1f(const std::string &name, float value);
     void SetUniform4f(const std::string &name, float v0, float v1, float v2, float v3);
 
 
