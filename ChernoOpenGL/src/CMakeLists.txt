@@ -5,6 +5,8 @@ set(PROJECT_SOURCES ${SRC_LIST})
 find_package(GLEW CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 
+# 添加第三方库
+add_subdirectory(vendor/stb_image)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 
@@ -13,5 +15,7 @@ add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
         $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
         $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
 )]]
+target_link_libraries(${PROJECT_NAME} PRIVATE stb_image)
 target_link_libraries(${PROJECT_NAME} PRIVATE GLEW::GLEW)
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
+

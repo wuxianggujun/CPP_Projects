@@ -9,6 +9,7 @@
 #include "VertexArray.h"
 #include "Shader.h"
 #include "VertexBufferLayout.h"
+#include "Texture.h"
 
 
 int main() {
@@ -40,10 +41,10 @@ int main() {
 
     {
         float positions[] = {
-                -0.5f, -0.5f, // 0
-                0.5, -0.5f,   // 1
-                0.5f, 0.5f,   // 2
-                -0.5f, 0.5f   // 3
+                -0.5f, -0.5f, 0.0f, 0.0f,   // 0
+                0.5, -0.5f, 1.0f, 0.0f,     // 1
+                0.5f, 0.5f, 1.0f, 1.0f,   // 2
+                -0.5f, 0.5f, 0.0f, 1.0f // 3
         };
         //索引缓冲区
         unsigned int indices[] = {
@@ -51,13 +52,13 @@ int main() {
                 2, 3, 0
         };
 
-        unsigned int vao;
-        glGenVertexArrays(1, &vao);
-        glBindVertexArray(vao);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
         VertexArray va;
         VertexBuffer vb(positions, sizeof(positions));
         VertexBufferLayout layout;
+        layout.Push<float>(2); //3 floats per position
         layout.Push<float>(2); //3 floats per position
         va.AddBuffer(vb, layout);
 
@@ -65,7 +66,12 @@ int main() {
 
         Shader shader("res/shaders/Basic.shader");
         shader.Bind();
-        shader.SetUniform4f("u_color", 0.8f, 0.3f, 0.8f, 1.0f);
+        //shader.SetUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
+
+        Texture texture("res/textures/ChernoLogo.png");
+        texture.Bind();
+        shader.SetUniform1i("u_Texture", 0);
+
 
         va.Unbind();
         vb.Unbind();
@@ -83,7 +89,7 @@ int main() {
             renderer.Clear();
 
             shader.Bind();
-            shader.SetUniform4f("u_color", r, 0.3f, 0.8f, 1.0f);
+            //shader.SetUniform4f("u_Color", r, 0.3f, 0.8f, 1.0f);
 
             //顶点数组。索引缓冲区。着色器
             renderer.Draw(va, ib, shader);
