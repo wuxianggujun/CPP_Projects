@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD 17)
 include(D:/Software/vcpkg/scripts/buildsystems/vcpkg.cmake)
 
 #add_subdirectory(ChernoOpenGL)
-add_subdirectory(mine-sweep-SDL2)
+add_subdirectory(SFML_BlackWhite)
