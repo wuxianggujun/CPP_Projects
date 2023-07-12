@@ -1,7 +1,4 @@
 # 项目排除路径
-/cmake-build-debug/
-/Demo_01/.idea/
-/mine-sweep-SDL2/build/
-/SimpleExample_Asio/SimpleExample_Asio/x64/
-/Skia_glfw/.idea/
-/Skia_glfw/cmake-build-debug/
+**/cmake-build-debug/
+**/.idea/
+**/build/
