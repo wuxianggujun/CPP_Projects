@@ -12,10 +12,16 @@ constexpr SDL_Color KeyColor = {118, 66, 138, 255};
 std::unique_ptr<Context> Context::instance_ = nullptr;
 
 Map CreateRandomMap(int bombCount, int width, int height) {
+    /**
+     * 首先使用SDL_assert断言确保炸弹数量小于地图的总格子数。然后，
+     * 使用循环随机放置炸弹，直到炸弹数量减为0。如果无法在最大放置次数内成功放置炸弹，
+     * 则在剩余的格子中随机选择一个放置炸弹。
+     */
     SDL_assert(bombCount < width * height);
 
     std::random_device d;
     std::mt19937 gen(d());
+    //    std::uniform_int_distribution生成均匀分布的随机数
     std::uniform_int_distribution dist1(0, width - 1);
     std::uniform_int_distribution dist2(0, height - 1);
 

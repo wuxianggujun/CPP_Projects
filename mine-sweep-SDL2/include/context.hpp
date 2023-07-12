@@ -23,6 +23,7 @@ using Map = Matrix<Tile>;
 
 Map CreateRandomMap(int bombCount, int width, int height);
 
+// 使用lambda表达式定义的内联函数，用于销毁SDL_Texture对象
 inline auto TextureDestroy = [](SDL_Texture *texture) {
     SDL_DestroyTexture(texture);
 };
@@ -68,22 +69,27 @@ struct Context final {
         instance_.reset();
     }
 
+    // 获取游戏上下文实例
     static Context &Inst() {
         SDL_assert(instance_);
         return *instance_;
     }
 
     void DrawMap();
-    void HandleEvent(SDL_Event& event);
+
+    void HandleEvent(SDL_Event &event);
 
 private:
     static std::unique_ptr<Context> instance_;
 
 
-    Context(Window &&window, Renderer &&renderer, Map &&map,int mineCount);
+    Context(Window &&window, Renderer &&renderer, Map &&map, int mineCount);
 
-    void drawOneTile(int x,int y,const Tile& tile);
-    void handleMoudeLeftBtnDown(const SDL_MouseButtonEvent& mouseButtonEvent);
-    void handleMoudeRightBtnDown(const SDL_MouseButtonEvent& mouseButtonEvent);
-    void handleKeyDown(const SDL_KeyboardEvent& keyboardEvent);
+    void drawOneTile(int x, int y, const Tile &tile);
+
+    void handleMoudeLeftBtnDown(const SDL_MouseButtonEvent &mouseButtonEvent);
+
+    void handleMoudeRightBtnDown(const SDL_MouseButtonEvent &mouseButtonEvent);
+
+    void handleKeyDown(const SDL_KeyboardEvent &keyboardEvent);
 };
