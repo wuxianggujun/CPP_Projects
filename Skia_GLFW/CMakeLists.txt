@@ -17,10 +17,10 @@ add_subdirectory(glad)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 
-target_compile_options(${PROJECT_NAME} PRIVATE
+#[[target_compile_options(${PROJECT_NAME} PRIVATE
         $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
         $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
-)
+)]]
 
 target_link_libraries(${PROJECT_NAME} PRIVATE glad)
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
