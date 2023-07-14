@@ -9,13 +9,19 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(unofficial-skia CONFIG REQUIRED)
 
-aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} PROJECT_SOURCES)
+#aux_source_directory(src PROJECT_SOURCES)
 
-set(PROJECT_SOURCES ${PROJECT_SOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
+set(INCLUDE_SOURCES
+        include/Paint.hpp
+        include/Canvas.hpp
+        include/Color.hpp)
 
 add_subdirectory(glad)
 
-add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
+include_directories(include)
+
+#add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${INCLUDE_SOURCES})
+add_executable(${PROJECT_NAME} src/test.cpp ${INCLUDE_SOURCES})
 
 #[[target_compile_options(${PROJECT_NAME} PRIVATE
         $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>

@@ -11,6 +11,11 @@
 #include "VertexBufferLayout.h"
 #include "Texture.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <imgui.h>
+#include "imgui_impl_glfw.h"
+
 
 int main() {
     GLFWwindow *window;
@@ -20,7 +25,7 @@ int main() {
         return -1;
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", nullptr, nullptr);
+    window = glfwCreateWindow(960, 540, "Hello World", nullptr, nullptr);
 
     if (!window) {
         glfwTerminate();
@@ -41,10 +46,10 @@ int main() {
 
     {
         float positions[] = {
-                -0.5f, -0.5f, 0.0f, 0.0f,   // 0
-                0.5, -0.5f, 1.0f, 0.0f,     // 1
-                0.5f, 0.5f, 1.0f, 1.0f,   // 2
-                -0.5f, 0.5f, 0.0f, 1.0f // 3
+                100.0f, 100.0f, 0.0f, 0.0f,   // 0
+                200.0f, 100.0f, 1.0f, 0.0f,     // 1
+                200.0f, 200.0f, 1.0f, 1.0f,   // 2
+                100.0f, 200.0f, 0.0f, 1.0f // 3
         };
         //索引缓冲区
         unsigned int indices[] = {
@@ -53,7 +58,7 @@ int main() {
         };
 
         glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         VertexArray va;
         VertexBuffer vb(positions, sizeof(positions));
@@ -64,9 +69,19 @@ int main() {
 
         IndexBuffer ib(indices, 6);
 
+        //创建正交矩阵
+        glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
+        // 创建一个平移矩阵
+        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(-100, 0, 0));
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(200, 200, 0));
+
+
+        glm::mat4 mvp = proj * view * model;
+
         Shader shader("res/shaders/Basic.shader");
         shader.Bind();
-        //shader.SetUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
+        shader.SetUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
+        shader.SetUniformMat4f("u_MVP", mvp);
 
         Texture texture("res/textures/ChernoLogo.png");
         texture.Bind();
@@ -79,6 +94,8 @@ int main() {
         shader.Unbind();
 
         Renderer renderer;
+
+        ImGui::CreateContext();
 
 
         float r = 0.0f;

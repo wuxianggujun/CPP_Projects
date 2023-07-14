@@ -9,7 +9,6 @@
 #include "include/core/SkColorSpace.h"
 #include "include/core/SkSurface.h"
 
-
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
 void processInput(GLFWwindow *window);
@@ -28,6 +27,8 @@ void init_Skia(int width, int height) {
     GrGLFramebufferInfo framebufferInfo;
     framebufferInfo.fFBOID = 0;
     framebufferInfo.fFormat = GL_RGBA8;
+
+//    SkColorType colorType = kBGRA_8888_SkColorType;
 
     SkColorType colorType = kRGBA_8888_SkColorType;
     GrBackendRenderTarget backendRenderTarget(width, height, 0, 0, framebufferInfo);
@@ -75,6 +76,7 @@ int main() {
     while (!glfwWindowShouldClose(window)) {
         processInput(window);
         SkPaint paint;
+        paint.setAntiAlias(true);
         paint.setColor(SK_ColorWHITE);
         canvas->drawPaint(paint);
         paint.setColor(SK_ColorBLUE);
