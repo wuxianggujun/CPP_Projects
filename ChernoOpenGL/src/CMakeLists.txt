@@ -1,13 +1,16 @@
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} SRC_LIST)
 
-set(PROJECT_SOURCES ${SRC_LIST})
+set(PROJECT_SOURCES ${SRC_LIST}
+        tests/Test.hpp
+        tests/TestClearColor.hpp
+        tests/TestClearColor.cpp)
 
 find_package(GLEW CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 find_package(imgui CONFIG REQUIRED)
 
-
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 # 添加第三方库
 add_subdirectory(vendor/stb_image)
 
