@@ -16,7 +16,9 @@ set(INCLUDE_SOURCES
         include/Canvas.hpp
         include/Color.hpp
         include/CanvasBuilder.hpp
-        include/SkiaIncludes.hpp)
+        include/SkiaIncludes.hpp
+        include/Drawable.hpp
+        include/Shape.hpp)
 
 add_subdirectory(glad)
 

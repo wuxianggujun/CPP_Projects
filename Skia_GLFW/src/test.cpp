@@ -2,7 +2,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "CanvasBuilder.hpp"
+#include "Canvas.hpp"
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
@@ -16,6 +16,21 @@ void error_callback(int error, const char *description) {
 // settings
 const unsigned int WIDTH = 800;
 const unsigned int HEIGHT = 600;
+
+// Rect.hpp
+class Rect : public Shape {
+private:
+    SkRect skRect;
+public:
+    Rect(float x, float y, float w, float h) {
+        skRect = {x, y, w, h};
+    }
+
+    void draw(Canvas *canvas) override {
+        canvas->drawRect(skRect, canvas->getPaint());
+    }
+};
+
 
 int main() {
     GLFWwindow *window;
@@ -32,23 +47,23 @@ int main() {
     }
     glfwMakeContextCurrent(window);
 
-
-   std::unique_ptr<Canvas> canvas = CanvasBuilder::build(WIDTH,HEIGHT);
-
+    Canvas canvas(WIDTH, HEIGHT);
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
     if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
 
+    Rect rect(100, 200, 200, 300);
 
     while (!glfwWindowShouldClose(window)) {
         processInput(window);
 
-        canvas->clear(SK_ColorWHITE);
-        canvas->draw();
-        canvas->flush();
+        canvas.clear(SK_ColorWHITE);
+        canvas.draw(&rect);
+        canvas.flush();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
