@@ -5,6 +5,7 @@ set(CMAKE_TOOLCHAIN_FILE "D:/Software/vcpkg/scripts/buildsystems/vcpkg.cmake")
 set(CMAKE_CXX_STANDARD 17)
 include(D:/Software/vcpkg/scripts/buildsystems/vcpkg.cmake)
 
+#add_subdirectory(SFMLTut)
 add_subdirectory(ChernoOpenGL)
 #add_subdirectory(Skia_GLFW)
 #add_subdirectory(Demo_01)
