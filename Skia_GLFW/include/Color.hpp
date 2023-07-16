@@ -5,10 +5,12 @@
 
 #include <core/SkColor.h>
 
-
 class Color {
 public:
     SkColor value;
+
+    // 内部声明
+    static const Color white;
 
 public:
 
@@ -42,8 +44,7 @@ public:
     static Color fromSkColor(SkColor skColor) {
         return {skColor};
     }
-
-    static const Color white;
 };
 
-const Color Color::white = Color(SK_ColorWHITE);
+// 外部定义
+inline const Color Color::white = {SK_ColorWHITE};

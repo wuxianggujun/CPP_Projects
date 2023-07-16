@@ -22,7 +22,7 @@ int main() {
     return 0;
 }
 
-int sum_arr(const int *arr, int n) {
+int sum_arr(int arr[], int n) {
     int total = 0;
     std::cout << arr << " = arr, ";
     std::cout << sizeof arr << " = sizeof arr\n";

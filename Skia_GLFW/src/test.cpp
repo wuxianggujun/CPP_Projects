@@ -1,8 +1,8 @@
-#include "Canvas.hpp"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "CanvasBuilder.hpp"
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
@@ -32,7 +32,8 @@ int main() {
     }
     glfwMakeContextCurrent(window);
 
-    Canvas canvas = Canvas(WIDTH, HEIGHT);
+
+   std::unique_ptr<Canvas> canvas = CanvasBuilder::build(WIDTH,HEIGHT);
 
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
@@ -45,9 +46,9 @@ int main() {
     while (!glfwWindowShouldClose(window)) {
         processInput(window);
 
-        canvas.clear(Color::white);
-        canvas.draw();
-
+        canvas->clear(SK_ColorWHITE);
+        canvas->draw();
+        canvas->flush();
 
         glfwSwapBuffers(window);
         glfwPollEvents();

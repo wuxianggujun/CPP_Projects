@@ -14,7 +14,9 @@ find_package(unofficial-skia CONFIG REQUIRED)
 set(INCLUDE_SOURCES
         include/Paint.hpp
         include/Canvas.hpp
-        include/Color.hpp)
+        include/Color.hpp
+        include/CanvasBuilder.hpp
+        include/SkiaIncludes.hpp)
 
 add_subdirectory(glad)
 
