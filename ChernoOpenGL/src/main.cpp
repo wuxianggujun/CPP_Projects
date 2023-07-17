@@ -17,6 +17,7 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include "tests/TestClearColor.hpp"
+#include "tests/TestTexture2D.hpp"
 
 
 int main() {
@@ -58,18 +59,18 @@ int main() {
         ImGuiIO &io = ImGui::GetIO();
         (void) io;
         io.FontGlobalScale = 2.5f;
+        ImGui::StyleColorsDark();
 
         const char *glsl_version = "#version 150";
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init(glsl_version);
-
-        ImGui::StyleColorsDark();
 
         test::Test *currentTest = nullptr;
         auto testMenu = new test::TestMenu(currentTest);
         currentTest = testMenu;
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
+        testMenu->RegisterTest<test::TestTexture2D>("2D Texture");
 
 
         while (!glfwWindowShouldClose(window)) {
@@ -101,7 +102,7 @@ int main() {
             glfwPollEvents();
         }
         delete currentTest;
-        if (currentTest!= testMenu){
+        if (currentTest != testMenu) {
             delete testMenu;
         }
     }

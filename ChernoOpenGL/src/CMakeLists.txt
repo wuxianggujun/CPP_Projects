@@ -4,7 +4,9 @@ set(PROJECT_SOURCES ${SRC_LIST}
         tests/Test.hpp
         tests/TestClearColor.hpp
         tests/TestClearColor.cpp
-        tests/Test.cpp)
+        tests/Test.cpp
+        tests/TestTexture2D.cpp
+        tests/TestTexture2D.hpp)
 
 find_package(GLEW CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)

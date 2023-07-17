@@ -8,7 +8,7 @@
 
 namespace test {
 
-    class TestClearColor : public Test {
+    class TestClearColor: public Test {
     private:
         float m_ClearColor[4];
 
