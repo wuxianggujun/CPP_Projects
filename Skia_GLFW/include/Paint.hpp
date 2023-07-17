@@ -4,14 +4,29 @@
 #pragma once
 
 #include <Color.hpp>
+#include <core/SkFont.h>
+#include <core/SkPaint.h>
+#include <core/SkTextBlob.h>
 
 class Paint {
 private:
     SkPaint skPaint;
+    SkFont skFont;
+    SkTextBlobBuilder builder;
+    sk_sp<SkTextBlob> textBlob;
 
 public:
     Paint() {
-        skPaint.setAntiAlias(true);
+        //builder.allocRun(skFont);
+        textBlob = builder.make();
+    }
+
+    void setAntiAlias(bool aa) {
+        skPaint.setAntiAlias(aa);
+    }
+
+    void setFontSize(float size) {
+        skFont.setSize(size);
     }
 
     void setColor(Color color) {

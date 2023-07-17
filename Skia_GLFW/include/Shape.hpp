@@ -4,9 +4,21 @@
 #pragma once
 
 class Canvas;
-// Shape.hpp
+
 class Shape {
+protected:
+    Paint paint;
 public:
     virtual ~Shape() = default;
-    virtual void draw(Canvas* canvas) = 0;
+
+    virtual void initPaint() {
+        paint.setColor(SK_ColorBLACK);
+        paint.setAntiAlias(true);
+    }
+
+    SkPaint getPaint() {
+        return paint.toSkPaint();
+    }
+
+    virtual void draw(Canvas *canvas) = 0;
 };

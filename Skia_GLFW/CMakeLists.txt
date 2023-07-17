@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 #include(D:/Software/vcpkg/scripts/buildsystems/vcpkg.cmake)
 
 find_package(glfw3 CONFIG REQUIRED)
+find_package(GTest CONFIG REQUIRED)
 find_package(unofficial-skia CONFIG REQUIRED)
 
 #aux_source_directory(src PROJECT_SOURCES)
@@ -17,7 +18,6 @@ set(INCLUDE_SOURCES
         include/Color.hpp
         include/CanvasBuilder.hpp
         include/SkiaIncludes.hpp
-        include/Drawable.hpp
         include/Shape.hpp)
 
 add_subdirectory(glad)
@@ -34,5 +34,6 @@ add_executable(${PROJECT_NAME} src/test.cpp ${INCLUDE_SOURCES})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE glad)
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
+target_link_libraries(${PROJECT_NAME} PRIVATE GTest::gtest)
 target_link_libraries(${PROJECT_NAME} PRIVATE unofficial::skia::skia)
 

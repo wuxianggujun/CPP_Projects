@@ -4,6 +4,21 @@
 #include <iostream>
 #include "Canvas.hpp"
 
+size_t memory_usage = 0;
+
+void *operator new(size_t size) {
+    memory_usage += size;
+    return malloc(size);
+}
+
+void operator delete(void *ptr) {
+    free(ptr);
+}
+
+void printMemoryUsage() {
+    std::cout << "Memory used: " << memory_usage << " bytes" << std::endl;
+}
+
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
 void processInput(GLFWwindow *window);
@@ -20,7 +35,7 @@ const unsigned int HEIGHT = 600;
 // Rect.hpp
 class Rect : public Shape {
 private:
-    SkRect skRect;
+    SkRect skRect{};
 public:
     Rect(float x, float y, float w, float h) {
         skRect = {x, y, w, h};
@@ -31,8 +46,31 @@ public:
     }
 };
 
+class LineNumber : public Shape {
+
+private:
+
+    void draw(Canvas *canvas) override {
+        float offsetX = 50;
+        float offsetY = 40;
+
+        for (int i = 1; i <= 10; i++) {
+
+            float x = offsetX + 20;
+            float y = offsetY + i * 30;
+
+            canvas->getSkCanvas()->drawLine(offsetX, offsetX, x, y, getPaint());
+        }
+    }
+
+public:
+    LineNumber() {
+        paint.setAntiAlias(true);
+    }
+};
 
 int main() {
+    printMemoryUsage();
     GLFWwindow *window;
     glfwSetErrorCallback(error_callback);
     if (!glfwInit()) {
@@ -57,12 +95,13 @@ int main() {
     }
 
     Rect rect(100, 200, 200, 300);
+    LineNumber lineNumber;
 
     while (!glfwWindowShouldClose(window)) {
         processInput(window);
 
         canvas.clear(SK_ColorWHITE);
-        canvas.draw(&rect);
+        canvas.draw(&lineNumber);
         canvas.flush();
 
         glfwSwapBuffers(window);
@@ -71,6 +110,7 @@ int main() {
 
     glfwDestroyWindow(window);
     glfwTerminate();
+    printMemoryUsage();
     return 0;
 }
 

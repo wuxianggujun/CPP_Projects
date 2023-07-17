@@ -9,7 +9,6 @@
 #include "Shape.hpp"
 #include "CanvasBuilder.hpp"
 
-
 class Canvas {
 private:
     std::unique_ptr<SkCanvas> skCanvas;
@@ -27,8 +26,16 @@ public:
         shapes.push_back(shape);
     }
 
+    void drawColor(Color color) {
+        skCanvas->drawColor(color.toSkColor());
+    }
+
     void drawRect(const SkRect &rect, Paint paint) {
         skCanvas->drawRect(rect, paint.toSkPaint());
+    }
+
+    SkCanvas *getSkCanvas() {
+        return skCanvas.get();
     }
 
     Paint getPaint() {
@@ -48,6 +55,5 @@ public:
     void clear(Color color) {
         skCanvas->clear(color.toSkColor());
     }
-
 
 };
