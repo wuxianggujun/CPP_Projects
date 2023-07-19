@@ -23,7 +23,6 @@ find_package(SDL2 REQUIRED)
 # 添加SDL2头文件路径
 include_directories(${SDL2_INCLUDE_DIRS})
 
-
 aux_source_directory(src SRC)
 add_executable(${PROJECT_NAME} ${SRC}
         ${INCLUDE_HEADER})

@@ -3,6 +3,27 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/ChernoOpenGL/src/VertexArray.h" charset="GBK" />
     <file url="file://$PROJECT_DIR$/ChernoOpenGL/src/main.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Demo_01/src/recur.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/ded/fonts" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/shaders" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/arena.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/common.c" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/common.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/editor.c" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/editor.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/file_browser.c" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/file_browser.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/free_glyph.c" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/free_glyph.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/la.c" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/la.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/lexer.c" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/lexer.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/main.c" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/minirent.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/simple_renderer.c" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/simple_renderer.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ded/src/sv.h" charset="UTF-8" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>
